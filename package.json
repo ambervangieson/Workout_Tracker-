@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "watch": "nodemon index.js",
+    "start": "node public/api.js",
+    "watch": "nodemon public/api.js",
     "seed": "node seeders/seed.js"
   },
   "author": "",
@@ -22,8 +22,8 @@
     "url": "git+https://github.com/ambervangieson/Workout_Tracker-.git"
   },
   "keywords": [
-    "\"example\"",
-    "\"heroku\""
+    "example",
+    "heroku"
   ],
   "bugs": {
     "url": "https://github.com/ambervangieson/Workout_Tracker-/issues"
