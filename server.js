@@ -1,23 +1,39 @@
-var express = require('express');
-var app = express();
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require('path');
 
-// set the port of our application
-// process.env.PORT lets the port be set by Heroku
-var port = process.env.PORT || 8080;
+const { Workout } = require("./models");
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
+const PORT = process.env.PORT || 3000;
 
-// make express look in the public directory for assets (css/js/img)
-app.use(express.static(__dirname + '/public'));
+const app = express();
+app.use(logger("dev"));
 
-// set the home page route
-app.get('/', function(req, res) {
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-    // ejs render automatically looks in the views folder
-    res.render('index');
+app.use(express.static("public"));
+                                  
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", 
+{  useNewUrlParser: true,
+   useUnifiedTopology: true,
+   useCreateIndex: true,
+   useFindAndModify: false
 });
 
-app.listen(port, function() {
-    console.log('Our app is running on http://localhost:' + port);
+app.get('/stats', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/stats.html'));
+})
+
+app.get('/exercise', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/exercise.html'));
+})
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+})
+
+
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}!`);
 });
