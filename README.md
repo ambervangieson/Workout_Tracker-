@@ -5,5 +5,5 @@ Users are view create and track daily workouts. A consumer will reach their fitn
 
 deployed:
 
-<img src="./assets/workout-tracker">
+<img src="./public/workouttracker.jpg">
 
